@@ -1,2 +1,1 @@
-# node-react-workshop
-Isthmus node-react workshop
+Node-React Workshop
