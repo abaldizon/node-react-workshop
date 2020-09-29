@@ -1,5 +1,6 @@
 import config from 'config'
 import app from './app';
+import DB_Connection from './repositories/db';
 
 let port = config.get("port");
 
@@ -10,6 +11,9 @@ if(config.util.getEnv('NODE_ENV') === 'production') {
 if(!port) {
     process.exit(1);
 }
+
+const db_connection = new DB_Connection();
+db_connection.connect_db();
 
 const PORT:number = parseInt(port as string, 10);
 
