@@ -1,13 +1,16 @@
+import { validationResult } from 'express-validator';
 import { Request, Response, Router } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 import User from '../models/user';
 import { ErrorHandler, handleError } from '../error';
+import bodyUserValidations from '../middlewares/user/user.validator';
+import validationHandler from '../middlewares/validator';
 
 const router = Router();
 
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', bodyUserValidations, validationHandler, async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
 
     try {
