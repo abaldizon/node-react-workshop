@@ -5,12 +5,12 @@ import jwt from 'jsonwebtoken';
 import config from 'config';
 import User from '../models/user';
 import { ErrorHandler, handleError } from '../error';
-import bodyUserValidations from '../middlewares/user/user.validator';
+import bodyUserValidations from '../middlewares/validators/user/user.validator';
 import validationHandler from '../middlewares/validator';
 
 const router = Router();
 
-router.post('/', bodyUserValidations, validationHandler, async (req: Request, res: Response) => {
+router.post('/',bodyUserValidations, validationHandler, async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
 
     try {
