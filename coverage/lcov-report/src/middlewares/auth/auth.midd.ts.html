@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">29.41% </span>
+                <span class="strong">82.35% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/17</span>
+                <span class='fraction'>14/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">29.41% </span>
+                <span class="strong">82.35% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/17</span>
+                <span class='fraction'>14/17</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -83,48 +83,48 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">import { Request, Response, NextFunction } from 'express';
+<span class="cline-any cline-yes">3x</span></td><td class="text"><pre class="prettyprint lang-js">import { Request, Response, NextFunction } from 'express';
 import { ErrorHandler, handleError } from './../../error';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 &nbsp;
 &nbsp;
-const auth_token = <span class="fstat-no" title="function not covered" >(r</span>eq: Request, res: Response, next: NextFunction) =&gt; {
-    const token = <span class="cstat-no" title="statement not covered" >req.header('x-auth-token')</span>
+const auth_token = (req: Request, res: Response, next: NextFunction) =&gt; {
+    const token = req.header('x-auth-token')
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if(!token) {</span>
-        const custom = <span class="cstat-no" title="statement not covered" >new ErrorHandler(401, 'No Token. authorization denied');</span>
-<span class="cstat-no" title="statement not covered" >        handleError(custom,req,res);</span>
-<span class="cstat-no" title="statement not covered" >        return;</span>
+    if(!token) {
+        const custom = new ErrorHandler(401, 'No Token. authorization denied');
+        handleError(custom,req,res);
+        return;
     }
-<span class="cstat-no" title="statement not covered" >    try {</span>
-        const decoded: any = <span class="cstat-no" title="statement not covered" >jwt.decode(token, config.get('jwt_secret'))</span>
-<span class="cstat-no" title="statement not covered" >        req.user = decoded.user;</span>
-<span class="cstat-no" title="statement not covered" >        next();</span>
+    try {
+        const decoded: any = jwt.decode(token, config.get('jwt_secret'))
+        req.user = decoded.user;
+        next();
     } catch (err) {
         const custom = <span class="cstat-no" title="statement not covered" >new ErrorHandler(401, 'Token is not valid');</span>
 <span class="cstat-no" title="statement not covered" >        handleError(custom,req,res);</span>
@@ -139,7 +139,7 @@ export default auth_token;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Nov 09 2020 20:02:03 GMT-0600 (Central Standard Time)
+                at Mon Nov 16 2020 19:13:29 GMT-0600 (Central Standard Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
